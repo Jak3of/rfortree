@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 
 // eslint-disable-next-line react/prop-types, no-unused-vars
-export function TwitterFollowCard({ children, formatUserName, userName = 'unknow', name ,initialIsFollowing}) {
+export function TwitterFollowCard({ children, userName = 'unknow', name ,initialIsFollowing}) {
 
   //el padre no cambia al hijo (children) componente
   // por que no inicializa 2 veces un parametro 
@@ -28,12 +28,13 @@ export function TwitterFollowCard({ children, formatUserName, userName = 'unknow
         <img className='tw-followCard-avatar' alt={`avatar de ${userName}`} src={`https://unavatar.io/${userName}`} />
         <div className='tw-followCard-info'>
           <strong>{name}{children}</strong>
-          <span className="tw-followCard-UserName"> {formatUserName(userName)}</span>
+          <span className="tw-followCard-UserName"> @{userName}</span>
         </div>
       </header>
       <aside>
-        <button className={buttonClassName} onClick={handleClick}>
-          {text}
+      <button className={buttonClassName} onClick={handleClick}>
+          <span className='tw-followCard-text'>{text}</span>
+          <span className='tw-followCard-stopFollow'>Dejar de seguir</span>
         </button>
       </aside>
     </article>
