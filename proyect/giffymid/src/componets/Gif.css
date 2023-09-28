@@ -1,6 +1,8 @@
 .Gif {
+    align-items: center;
     border: 1px solid #eee;
     border-radius: 6px;
+    color: #fff;
     display: flex;
     flex-direction:column;
     text-decoration: none;
@@ -9,10 +11,15 @@
     width: 100%;
 }
 
-.Gif h4{
+.Gif h4 {
     margin: 0;
 }
 
-.Gif img{
+.Gif img {
     object-fit: contain;
+    
+}
+
+i{
+    font-size: 30px;
 }

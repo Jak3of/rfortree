@@ -1,21 +1,33 @@
-import React , { useEffect, useState } from "react"
-import Gif from "./Gif"
-import getGifs from "../service/getGifs"
+import React, { useEffect, useState } from "react"
+import Gif from "./Gif.js"
+import getGifs from "../service/getGifs.js"
 
 
 
-export default function ListOfGifs({keyword ='pepo'} ){
+export default function ListOfGifs({ params }) {
+    const { keyword }=params
     const [gifs, setGifs]=useState([])
+    //como mostrar el cargar
+    const [loading, setLoading]=useState(false)
 
-  useEffect(
-    function () {
-      getGifs({ keyword }).then(gifs => {
-        setGifs(gifs)
-      })
+    useEffect(
+        function () {
+            setLoading(true)
+            getGifs({ keyword }).then(gifs => {
+                setGifs(gifs)
+                setLoading(false)
+            })
 
-    }, [keyword])
-    return gifs.map(
-        ({id,title,url}) => 
-        <Gif key={id} title={title} id={id} url={url}/>
-        )
+        }, [keyword])
+
+        if (loading) return <i>CARGANDO🐱‍🏍</i>
+
+    return <div>
+        {
+            gifs.map(
+                ({ id, title, url }) =>
+                    <Gif key={id} title={title} id={id} url={url} />
+            )
+        }
+    </div>
 }
